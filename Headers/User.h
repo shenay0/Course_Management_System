@@ -26,11 +26,11 @@ class User{
 
     void changePassword(const string& newPass);
     
-
+    virtual User* clone() const = 0;
     virtual void writeToBinaryFile(std::ofstream& ofs) const = 0;
     virtual void loadFromBinaryFile(std::ifstream& ifs) = 0;
     virtual UserType getType() const = 0;
-
+    
     
 
 

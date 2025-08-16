@@ -34,3 +34,7 @@ UserType Admin:: getType()const{
     return Administrator;
 }
 
+User* Admin:: clone() const{
+    return new Admin(*this);
+}
+

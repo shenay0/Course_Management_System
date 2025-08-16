@@ -13,8 +13,8 @@ class Student: public User{
     //
     //
     ///
-    //
-
+    //  
+    User* clone() const override;
     void writeToBinaryFile(std:: ofstream&ofs)const override;
     void loadFromBinaryFile(std::ifstream& ifs) override;
     UserType getType() const override;

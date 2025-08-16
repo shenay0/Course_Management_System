@@ -37,3 +37,7 @@ void Teacher:: loadFromBinaryFile(std::ifstream&ifs){
 UserType Teacher:: getType() const{
     return type;
 }
+
+User* Teacher:: clone() const{
+    return new Teacher(*this);
+}

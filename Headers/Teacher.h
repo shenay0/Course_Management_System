@@ -1,3 +1,4 @@
+#pragma once
 #include "User.h"
 
 class Teacher: public User{
@@ -15,6 +16,7 @@ class Teacher: public User{
     //
     //
 
+    User* clone() const override;
     void writeToBinaryFile(std::ofstream& ofs) const override;
     void loadFromBinaryFile(std::ifstream& ifs) override;
     UserType getType() const override;

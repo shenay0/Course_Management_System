@@ -20,6 +20,10 @@ void Student:: writeToBinaryFile(std::ofstream&ofs)const{
 
 }
 
+User* Student:: clone() const{
+    return new Student(*this);
+}
+
 void Student:: loadFromBinaryFile(std::ifstream& ifs){
     int len = 0;
     ifs.read((char*)&len,sizeof(len));

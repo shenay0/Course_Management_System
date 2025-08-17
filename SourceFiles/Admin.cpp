@@ -3,6 +3,7 @@
 
 Admin:: Admin(){
     id = 0;
+    name = "admin";
     type = UserType:: Administrator;
     changePassword("0000");
 }

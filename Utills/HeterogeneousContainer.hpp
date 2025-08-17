@@ -32,7 +32,7 @@ class HeterogeneousContainer{
     const T* operator[](size_t index) const;
 	T* operator[](size_t index);
 	void swap(int i, int j);
-    
+    void clear();
 
 };
 
@@ -172,4 +172,9 @@ void HeterogeneousContainer<T>:: swap(int i, int j){
 template<class T>
 size_t HeterogeneousContainer<T>:: getSize()const{
     return size;
+}
+
+template <class T>
+void HeterogeneousContainer<T>:: clear(){
+    free();
 }

@@ -24,3 +24,15 @@ void User:: changePassword(const string& newPass){
 bool User:: isPasswordCorrect(const string& pass)const{
     return(pass==password);
 }
+
+void User:: printInbox() const{
+    inbox.printInbox();
+}
+
+void User:: addMessageToInbox(const Message& msg){
+    inbox.addMessage(msg);
+}
+
+void User:: clearInbox(){
+    inbox.clear();
+}

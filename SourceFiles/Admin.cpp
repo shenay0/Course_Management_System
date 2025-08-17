@@ -16,7 +16,8 @@ void Admin:: writeToBinaryFile(std::ofstream& ofs) const{
     ofs.write(getPassword().data(),length);
 
     ofs.write((const char*)&type,sizeof(UserType));
-    //add for messages etc
+    
+    inbox.writeToBinaryFile(ofs);
 }
 
 void Admin:: loadFromBinaryFile(std::ifstream& ifs){
@@ -30,7 +31,10 @@ void Admin:: loadFromBinaryFile(std::ifstream& ifs){
     changePassword(pass);
 
     ifs.read((char*)&type,sizeof(UserType));
+
+    inbox.loadFromBinaryFile(ifs);
 }
+
 UserType Admin:: getType()const{
     return Administrator;
 }

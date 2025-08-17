@@ -17,6 +17,8 @@ void Teacher:: writeToBinaryFile(std::ofstream& ofs) const{
     ofs.write((const char*)&id,sizeof(id));
 
     ofs.write((const char*)&type,sizeof(UserType));
+
+    inbox.writeToBinaryFile(ofs);
 }
 
 void Teacher:: loadFromBinaryFile(std::ifstream&ifs){
@@ -32,6 +34,8 @@ void Teacher:: loadFromBinaryFile(std::ifstream&ifs){
     ifs.read((char*)&id,sizeof(id));
     
     ifs.read((char*)&type,sizeof(UserType));
+
+    inbox.loadFromBinaryFile(ifs);
 }
 
 UserType Teacher:: getType() const{

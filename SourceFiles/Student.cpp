@@ -18,6 +18,8 @@ void Student:: writeToBinaryFile(std::ofstream&ofs)const{
 
     ofs.write((const char*)&type,sizeof(UserType));
 
+    inbox.writeToBinaryFile(ofs);
+
 }
 
 User* Student:: clone() const{
@@ -38,5 +40,7 @@ void Student:: loadFromBinaryFile(std::ifstream& ifs){
     ifs.read((char*)&id,sizeof(id));
 
     ifs.read((char*)&type,sizeof(UserType));
+
+    inbox.loadFromBinaryFile(ifs);
 
 }

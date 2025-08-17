@@ -1,3 +1,6 @@
+// Custom heterogeneous container implemented for learning purposes.
+// In production, std::vector<std::unique_ptr<Base>> would be preferred.
+
 #pragma once
 #include <iostream>
 

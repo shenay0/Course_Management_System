@@ -20,3 +20,7 @@ int User:: getId() const{
 void User:: changePassword(const string& newPass){
     password = newPass;
 }
+
+bool User:: isPasswordCorrect(const string& pass)const{
+    return(pass==password);
+}

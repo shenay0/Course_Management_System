@@ -66,7 +66,7 @@ HeterogeneousContainer<T>:: HeterogeneousContainer(const HeterogeneousContainer&
 }
 
 template <class T>
-HeterogeneousContainer<T>::HeterogeneousContainer(const HeterogeneousContainer&& other){
+HeterogeneousContainer<T>::HeterogeneousContainer(const HeterogeneousContainer&& other) noexcept{
     moveFrom(move(other));
 }
 
@@ -101,7 +101,7 @@ void HeterogeneousContainer<T>:: copyFrom(const HeterogeneousContainer& other){
 }
 
 template <class T>
-void HeterogeneousContainer<T>:: moveFrom(HeterogeneousContainer&& other){
+void HeterogeneousContainer<T>:: moveFrom(HeterogeneousContainer&& other) noexcept{
     size = other.size;
     capacity = other.capacity;
     other.size = other.capacity = 0;

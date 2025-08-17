@@ -5,6 +5,7 @@
 #include "Enums.h"
 using namespace std;
 
+
 class User{
     string password;
 
@@ -23,6 +24,7 @@ class User{
     const string& getName()const;
     const string& getPassword()const;
     int getId() const;
+    bool isPasswordCorrect(const string& pass) const;
 
     void changePassword(const string& newPass);
     

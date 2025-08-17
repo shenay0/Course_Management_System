@@ -6,10 +6,10 @@ class Admin: public User{
     Admin();
     ~Admin() = default;
 
-    void createTeacher(const string& name, const string& pass);
-    void createStudent(const string& name,const string& pass);
-    void deleteTeacher(int id);
-    void deleteStudent(int id);
+    // void createTeacher(const string& name, const string& pass);
+    // void createStudent(const string& name,const string& pass);
+    // void deleteTeacher(int id);
+    // void deleteStudent(int id);
     
     User* clone() const override;
     void writeToBinaryFile(std::ofstream& ofs) const override;

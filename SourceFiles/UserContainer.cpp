@@ -1,0 +1,90 @@
+#include "UserContainer.h"
+
+UserContainer* UserContainer:: getInstance(){
+    if(!instance){
+        instance = new UserContainer();
+    }
+    return instance;
+}
+
+void UserContainer:: freeInstance(){
+    delete instance;
+    instance = nullptr;
+}
+
+void UserContainer:: logInUser(int id, const string& pass){
+    User* user = findUser(id);
+
+	if (!user || !user->isPasswordCorrect(pass))
+	{
+		throw std::invalid_argument("Wrong user credentials!");
+	}
+
+	loggedUserId = id;
+	cout << "Login successful!\n";
+}
+
+void UserContainer:: logOutUser(){
+    loggedUserId = -1;
+}
+
+void UserContainer:: createUser(User* user){
+    if(!user){
+        throw std:: invalid_argument("Invalid user.\n");
+    }
+
+    users.addObject(user);
+    cout <<"Added " << toString(user->getType())<< " " << user->getName() << " with ID " << user->getId() << ".\n";
+}
+
+void UserContainer:: removeUser(int id){
+    for(int i = 0; i < users.getSize();i++){
+        if(users[i]->getId()==id){
+            users.remove(i);
+        }
+    }
+    cout << "Successfully removed user with ID " << id <<".\n";
+
+    
+}
+
+User* UserContainer:: findUser(int id){
+    for(int i = 0; i < users.getSize();i++){
+        if(users[i]->getId()==id){
+            return users[i];
+        }
+    }
+
+    throw std::invalid_argument("Invalid id.\n");
+}
+
+User* UserContainer:: getLoggedUser(){
+    User* user = findUser(loggedUserId);
+    return user;
+}
+
+void UserContainer:: writeToBinaryFile(std::ofstream& ofs) const{
+    ofs.write((const char*)&loggedUserId, sizeof(loggedUserId));
+
+    int len = users.getSize();
+    ofs.write((const char*)&len,sizeof(len));
+    for(int i =0;i < len;i++){
+        users[i]->writeToBinaryFile(ofs);
+    }
+}
+
+void UserContainer::loadFromBinaryFile(std::ifstream&ifs){
+    ifs.read((char*)&loggedUserId,sizeof(loggedUserId));
+
+    users.clear();
+
+    int len = 0;
+    ifs.read((char*)&len,sizeof(len));
+    
+    for(int i = 0; i < len; i++ ){
+        User* user;
+        user->loadFromBinaryFile(ifs);
+        users.addObject(user);
+    }
+    
+}

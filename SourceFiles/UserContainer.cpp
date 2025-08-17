@@ -1,4 +1,5 @@
 #include "UserContainer.h"
+#include "Constants.h"
 
 UserContainer* UserContainer:: getInstance(){
     if(!instance){
@@ -58,6 +59,13 @@ User* UserContainer:: findUser(int id){
     throw std::invalid_argument("Invalid id.\n");
 }
 
+void UserContainer::sendMessageToAll(const string& content){
+    User* admin = findUser(CONSTANTS::ADMIN_INDEX);
+    for(int i = 1; i < users.getSize();i++){
+        Message msg(content, admin->getName(),users[i]->getId());
+        users[i]->addMessageToInbox(msg);
+    }
+}
 User* UserContainer:: getLoggedUser(){
     User* user = findUser(loggedUserId);
     return user;
@@ -86,5 +94,5 @@ void UserContainer::loadFromBinaryFile(std::ifstream&ifs){
         user->loadFromBinaryFile(ifs);
         users.addObject(user);
     }
-    
+
 }

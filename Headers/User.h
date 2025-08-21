@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include "Enums.h"
+#include "Inbox.h"
 using namespace std;
 
 
@@ -14,7 +15,7 @@ class User{
     int id;
     static int idCounter;
     UserType type;
-    //Inbox
+    Inbox inbox;
 
     public:
     User() = default;
@@ -25,6 +26,10 @@ class User{
     const string& getPassword()const;
     int getId() const;
     bool isPasswordCorrect(const string& pass) const;
+
+    void printInbox() const;
+    void addMessageToInbox(const Message& msg);
+    void clearInbox(); 
 
     void changePassword(const string& newPass);
     

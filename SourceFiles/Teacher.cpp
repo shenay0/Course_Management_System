@@ -2,10 +2,12 @@
 
 Teacher:: Teacher(const string& name, const string& pass):User(name,pass){
     id = idCounter++;
-    type = UserType::Teacher;
+    type = UserType::TEACHER;
 } 
 
 void Teacher:: writeToBinaryFile(std::ofstream& ofs) const{
+    ofs.write((const char*)&type,sizeof(UserType));
+    
     int len = name.size();
     ofs.write((const char*)&len, sizeof(len));
     ofs.write(name.data(),len);
@@ -16,12 +18,12 @@ void Teacher:: writeToBinaryFile(std::ofstream& ofs) const{
 
     ofs.write((const char*)&id,sizeof(id));
 
-    ofs.write((const char*)&type,sizeof(UserType));
-
     inbox.writeToBinaryFile(ofs);
 }
 
 void Teacher:: loadFromBinaryFile(std::ifstream&ifs){
+    ifs.read((char*)&type,sizeof(UserType));
+   
     int len = 0;
     ifs.read((char*)&len,sizeof(len));
     ifs.read(&name[0],len);
@@ -33,7 +35,7 @@ void Teacher:: loadFromBinaryFile(std::ifstream&ifs){
 
     ifs.read((char*)&id,sizeof(id));
     
-    ifs.read((char*)&type,sizeof(UserType));
+    
 
     inbox.loadFromBinaryFile(ifs);
 }

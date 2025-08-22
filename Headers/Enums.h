@@ -2,16 +2,16 @@
 #include <iostream>
 
 enum UserType{
-    Student,
-    Teacher,
-    Administrator
+    STUDENT,
+    TEACHER,
+    ADMIN
 };
 
 inline std::string toString(UserType type) {
     switch (type) {
-        case UserType::Administrator:   return "Admin";
-        case UserType::Student: return "Student";
-        case UserType::Teacher: return "Teacher";
+        case UserType::ADMIN:   return "Admin";
+        case UserType::STUDENT: return "Student";
+        case UserType::TEACHER: return "Teacher";
     }
     return "Unknown";
 }

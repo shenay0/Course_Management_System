@@ -4,23 +4,26 @@
 Admin:: Admin(){
     id = 0;
     name = "admin";
-    type = UserType:: Administrator;
+    type = UserType:: ADMIN;
     changePassword("0000");
 }
 
 void Admin:: writeToBinaryFile(std::ofstream& ofs) const{
+    ofs.write((const char*)&type,sizeof(UserType));
+    
     ofs.write((const char*)&id,sizeof(id));
 
     int length = getPassword().size();
     ofs.write((const char*)&length, sizeof(length));
     ofs.write(getPassword().data(),length);
 
-    ofs.write((const char*)&type,sizeof(UserType));
     
     inbox.writeToBinaryFile(ofs);
 }
 
 void Admin:: loadFromBinaryFile(std::ifstream& ifs){
+   ifs.read((char*)&type,sizeof(UserType));
+   
     ifs.read((char*)&id,sizeof(id));
     int len = 0;
     ifs.read((char*)&len, sizeof(len));
@@ -30,13 +33,11 @@ void Admin:: loadFromBinaryFile(std::ifstream& ifs){
 
     changePassword(pass);
 
-    ifs.read((char*)&type,sizeof(UserType));
-
     inbox.loadFromBinaryFile(ifs);
 }
 
 UserType Admin:: getType()const{
-    return Administrator;
+    return type;
 }
 
 User* Admin:: clone() const{

@@ -1,6 +1,6 @@
 #include "UserContainer.h"
 #include "Constants.h"
-
+#include "UserFactory.h"
 UserContainer* UserContainer:: getInstance(){
     if(!instance){
         instance = new UserContainer();
@@ -77,6 +77,8 @@ void UserContainer:: writeToBinaryFile(std::ofstream& ofs) const{
     int len = users.getSize();
     ofs.write((const char*)&len,sizeof(len));
     for(int i =0;i < len;i++){
+        UserType t = users[i]->getType();
+        ofs.write((const char*)&t,sizeof(t));
         users[i]->writeToBinaryFile(ofs);
     }
 }
@@ -90,7 +92,9 @@ void UserContainer::loadFromBinaryFile(std::ifstream&ifs){
     ifs.read((char*)&len,sizeof(len));
     
     for(int i = 0; i < len; i++ ){
-        User* user;
+        UserType t;
+        ifs.read((char*)&t,sizeof(t));
+        User* user = UserFactory:: getUser(t);
         user->loadFromBinaryFile(ifs);
         users.addObject(user);
     }

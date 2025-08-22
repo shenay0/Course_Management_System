@@ -2,8 +2,6 @@
 #include "User.h"
 
 class Teacher: public User{
-    //courses
-    //inbox
     public:
     Teacher() = default;
     Teacher(const string& name, const string& pass);

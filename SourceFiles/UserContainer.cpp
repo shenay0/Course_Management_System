@@ -67,6 +67,8 @@ void UserContainer::sendMessageToAll(const string& content){
     }
 }
 User* UserContainer:: getLoggedUser(){
+    if(loggedUserId == -1) return nullptr;
+    
     User* user = findUser(loggedUserId);
     return user;
 }

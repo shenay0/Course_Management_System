@@ -25,7 +25,7 @@ class HeterogeneousContainer{
 
     ~HeterogeneousContainer();
 
-    void addObject(T* obj);
+    void addObject(const T* obj);
     void addObject(const T& obj);
 
     void remove(size_t idx);
@@ -146,7 +146,7 @@ void HeterogeneousContainer<T>:: addObject(const T& obj){
 }
 
 template<class T>
-void HeterogeneousContainer<T>:: addObject(T* obj){
+void HeterogeneousContainer<T>:: addObject(const T* obj){
     if(size>= capacity){
         resize(capacity*2);
     }

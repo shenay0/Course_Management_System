@@ -1,13 +1,6 @@
-#pragma once
-#include <iostream>
+#include "Enums.h"
 
-enum UserType{
-    STUDENT,
-    TEACHER,
-    ADMIN
-};
-
-inline std::string toString(UserType type) {
+std::string toString(UserType type) {
     switch (type) {
         case UserType::ADMIN:   return "Admin";
         case UserType::STUDENT: return "Student";

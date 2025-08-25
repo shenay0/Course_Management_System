@@ -60,6 +60,9 @@ User* UserContainer:: findUser(int id){
 }
 
 void UserContainer::sendMessageToAll(const string& content){
+    if(loggedUserId != CONSTANTS::ADMIN_INDEX){
+        throw std::logic_error("Only admin can send message to all.\n");
+    }
     User* admin = findUser(CONSTANTS::ADMIN_INDEX);
     for(int i = 1; i < users.getSize();i++){
         Message msg(content, admin->getName(),users[i]->getId());

@@ -155,7 +155,7 @@ void HeterogeneousContainer<T>:: addObject(const T* obj){
 }
 template<class T>
 void HeterogeneousContainer<T>:: remove(size_t idx){
-    if(idx <=size){
+    if(idx >=size){
         throw std::out_of_range("Invalid index to remove.");
     }
     delete objects[idx];

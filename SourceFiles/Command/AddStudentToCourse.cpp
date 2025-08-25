@@ -1,0 +1,23 @@
+#include "AddStudentToCourse.h"
+
+void AddStudentToCourse::execute() const{
+    User* user = userContainer->getLoggedUser();
+    if(user->getType() != UserType:: TEACHER){
+        throw std::invalid_argument("Only teachers can add students to course.\n");
+    }
+
+    std:: cout << "Course name: ";
+    std::string name;
+    std::getline(cin,name);
+    Course* c = courseRepository->findCourse(name);
+
+    if(c->teacherID() != user->getId()){
+        throw std:: invalid_argument("This teacher is not in the course.\n");
+    }
+
+    int studentId;
+    std:: cin >> studentId;
+
+    User* student = userContainer->findUser(studentId);
+    c->addUser(student);
+}

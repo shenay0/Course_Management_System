@@ -3,6 +3,11 @@
 
 
 void AddTeacher:: execute() const{
+    User* user = userContainer->getLoggedUser();
+    if(user->getType() != UserType:: ADMIN){
+        throw std::invalid_argument("Only admins can add users.\n");
+    }
+
     std::cout << "Teacher's name: ";
     std::string name;
     std::getline(std::cin >> std::ws, name); 

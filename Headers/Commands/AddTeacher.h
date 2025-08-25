@@ -4,6 +4,6 @@
 class AddTeacher: public Command{
     public:
     AddTeacher() = default;
-    virtual void execute() const override;
+    void execute() const override;
 
 };

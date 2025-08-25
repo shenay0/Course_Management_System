@@ -1,8 +1,8 @@
 #pragma once
 #include "Command.h"
 
-class AddStudent: public Command{
+class MessageAll: public Command{
     public:
-    AddStudent() = default;
+    MessageAll()=default;
     void execute() const override;
 };

@@ -9,7 +9,7 @@ void AddTeacher:: execute() const{
 
     std::cout << "Default password: ";
     std::string password;
-    std::getline(std::cin, password);  
+    std::getline(std::cin >> std:: ws, password);  
 
     Teacher* teacher = new Teacher(name, password);
     userContainer->createUser(teacher);

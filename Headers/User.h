@@ -4,6 +4,7 @@
 #include <fstream>
 #include "Enums.h"
 #include "Inbox.h"
+#include "FileUtills.h"
 using namespace std;
 
 
@@ -26,7 +27,7 @@ class User{
     const string& getPassword()const;
     int getId() const;
     bool isPasswordCorrect(const string& pass) const;
-
+    UserType getType()const;
     void printInbox() const;
     void addMessageToInbox(const Message& msg);
     void clearInbox(); 
@@ -36,10 +37,5 @@ class User{
     virtual User* clone() const = 0;
     virtual void writeToBinaryFile(std::ofstream& ofs) const = 0;
     virtual void loadFromBinaryFile(std::ifstream& ifs) = 0;
-    virtual UserType getType() const = 0;
-    
-    
-
-
 
 };

@@ -17,6 +17,10 @@ int User:: getId() const{
     return id;
 }
 
+UserType User:: getType() const{
+    return type;
+}
+
 void User:: changePassword(const string& newPass){
     password = newPass;
 }

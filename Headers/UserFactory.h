@@ -7,7 +7,7 @@ class UserFactory{
     static User* getUser(UserType type);
 };
 
-inline User* UserFactory:: getUser(UserType type){
+ User* UserFactory:: getUser(UserType type){
     switch(type){
         case UserType:: TEACHER:
             return new Teacher();

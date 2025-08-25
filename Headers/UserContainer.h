@@ -8,7 +8,7 @@ class UserContainer{
     static UserContainer* instance;
     
     HeterogeneousContainer<User> users;
-    int loggedUserId = -1;
+    int loggedUserId = CONSTANTS::INVALID_USER_ID;
 
     UserContainer& operator= (const UserContainer& other)  = delete;
     UserContainer(const UserContainer& other) = delete;
@@ -22,7 +22,7 @@ class UserContainer{
     void logInUser(int id, const string& pass);
     void logOutUser();
 
-    void createUser(User* user);
+    void createUser(const User* user);
     void removeUser(int id);
 
     User* findUser(int id);

@@ -8,13 +8,8 @@ Student:: Student(const string& name, const string& pass):User(name,pass){
 void Student:: writeToBinaryFile(std::ofstream&ofs)const{
    ofs.write((const char*)&type,sizeof(UserType));
    
-    int len = name.size();
-    ofs.write((const char*)&len, sizeof(len));
-    ofs.write(name.data(), len);
-
-    len = getPassword().size();
-    ofs.write((const char*)&len,sizeof(len));
-    ofs.write(getPassword().data(),len);
+    file_utills:: saveStringToBinaryFile(ofs,name);
+    file_utills:: saveStringToBinaryFile(ofs,getPassword());
 
     ofs.write((const char*)&id,sizeof(id));
 
@@ -26,25 +21,16 @@ User* Student:: clone() const{
     return new Student(*this);
 }
 
-UserType Student:: getType() const{
-    return type;
-}
 void Student:: loadFromBinaryFile(std::ifstream& ifs){
     ifs.read((char*)&type,sizeof(UserType));
    
-    int len = 0;
-    ifs.read((char*)&len,sizeof(len));
-    ifs.read(&name[0],len);
+    file_utills:: loadStringFromBinaryFile(ifs,name);
 
-    len = 0;
-    ifs.read((char*)&len,sizeof(len));
-    string pass(len,'\0');
-    ifs.read(&pass[0],len);
-    changePassword(pass);
+    string buff;
+    file_utills:: loadStringFromBinaryFile(ifs,buff);
+    changePassword(buff);
 
     ifs.read((char*)&id,sizeof(id));
-
-    
 
     inbox.loadFromBinaryFile(ifs);
 

@@ -29,7 +29,7 @@ void UserContainer:: logOutUser(){
     loggedUserId = -1;
 }
 
-void UserContainer:: createUser(User* user){
+void UserContainer:: createUser(const User* user){
     if(!user){
         throw std:: invalid_argument("Invalid user.\n");
     }

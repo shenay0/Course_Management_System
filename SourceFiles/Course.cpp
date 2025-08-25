@@ -40,6 +40,10 @@ const string& Course:: getPassword() const{
     return password;
 }
 
+void Course:: setPassword(const string& pass){
+    password = pass;
+}
+
 void Course:: writeToBinaryFile(std::ofstream& ofs) const{
     int len = users.size();
     ofs.write((const char*)&len,sizeof(len));
@@ -55,13 +59,9 @@ void Course:: writeToBinaryFile(std::ofstream& ofs) const{
         assignments[i].writeToBinaryFile(ofs);
     }
 
-    len = courseName.size();
-    ofs.write((const char*)&len,sizeof(len));
-    ofs.write(courseName.data(),len);
+    file_utills::saveStringToBinaryFile(ofs,courseName);
 
-    len = password.size();
-    ofs.write((const char*)&len,sizeof(len));
-    ofs.write(password.data(), len);
+    file_utills::saveStringToBinaryFile(ofs,getPassword());
 
 }
 
@@ -85,13 +85,11 @@ void Course::loadFromBinaryFile(std::ifstream& ifs){
         assignments.push_back(a);
     }
 
-    len = 0;
-    ifs.read((char*)&len,sizeof(len));
-    ifs.read(&courseName[0],len);
+    file_utills::loadStringFromBinaryFile(ifs,courseName);
 
-    len = 0;
-    ifs.read((char*)&len,sizeof(len));
-    ifs.read(&password[0],len);
+    file_utills::loadStringFromBinaryFile(ifs,password);
+    
+   
 }
 
 

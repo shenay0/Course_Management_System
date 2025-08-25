@@ -12,7 +12,7 @@ class CourseRepository{
     static CourseRepository* getInstance();
     static void freeInstance();
 
-    vector<Course>& getCourses() ;
+    const vector<Course>& getCourses() ;
     Course* findCourse(const string& name);
 
     void addCourse(const Course& course);

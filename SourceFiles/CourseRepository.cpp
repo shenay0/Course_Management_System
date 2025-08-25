@@ -14,7 +14,7 @@ void CourseRepository:: freeInstance(){
     instance = nullptr;
 }
 
-vector<Course>& CourseRepository::getCourses(){
+const vector<Course>& CourseRepository::getCourses(){
     return courses;
 }
 

@@ -1,5 +1,5 @@
 #include "Assignment.h"
-
+#include "FileUtills.h"
 Assignment:: Assignment(const string& studentName, const string& courseName, const string& assignmentName):studentName(studentName), courseName(courseName), name(assignmentName){
 
 }
@@ -45,25 +45,16 @@ size_t Assignment:: getGrade() const{
 }
 
 void Assignment:: writeToBinaryFile(std::ofstream& ofs) const{
-    int len = studentName.size();
-    ofs.write((const char*)&len,sizeof(len));
-    ofs.write(studentName.data(),len);
 
-    len = courseName.size();
-    ofs.write((const char*)&len,sizeof(len));
-    ofs.write(courseName.data(),len);
+    file_utills::saveStringToBinaryFile(ofs,studentName);
+    
+    file_utills::saveStringToBinaryFile(ofs,courseName);
 
-    len = name.size();
-    ofs.write((const char*)&len,sizeof(len));
-    ofs.write(name.data(),len);
+    file_utills::saveStringToBinaryFile(ofs,name);
 
-    len = comment.size();
-    ofs.write((const char*)&len,sizeof(len));
-    ofs.write(comment.data(),len);
+    file_utills::saveStringToBinaryFile(ofs,comment);
 
-    len = submission.size();
-    ofs.write((const char*)&len,sizeof(len));
-    ofs.write(submission.data(),len);
+    file_utills::saveStringToBinaryFile(ofs,submission);
 
     ofs.write((const char*)&grade,sizeof(grade));
 
@@ -71,25 +62,16 @@ void Assignment:: writeToBinaryFile(std::ofstream& ofs) const{
 }
 
 void Assignment:: loadFromBinaryFile(std:: ifstream& ifs){
-    int len;
-    ifs.read((char*)&len,sizeof(len));
-    ifs.read(&studentName[0],len);
 
-    len = 0;
-    ifs.read((char*)&len,sizeof(len));
-    ifs.read(&courseName[0],len);
+    file_utills::loadStringFromBinaryFile(ifs,studentName);
 
-    len = 0;
-    ifs.read((char*)&len,sizeof(len));
-    ifs.read(&name[0],len);
+    file_utills::loadStringFromBinaryFile(ifs,courseName);
 
-    len = 0;
-    ifs.read((char*)&len,sizeof(len));
-    ifs.read(&comment[0],len);
+    file_utills::loadStringFromBinaryFile(ifs,name);
+   
+    file_utills::loadStringFromBinaryFile(ifs,comment);
 
-    len = 0;
-    ifs.read((char*)&len,sizeof(len));
-    ifs.read(&submission[0],len);
+    file_utills::loadStringFromBinaryFile(ifs,submission);
 
     ifs.read((char*)&grade,sizeof(grade));
 

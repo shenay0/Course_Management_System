@@ -5,5 +5,5 @@
 class Logout: public Command{
     public:
     Logout() = default;
-    virtual void execute() const override;
+    void execute() const override;
 };

@@ -7,15 +7,8 @@ class Student: public User{
     Student(const string& name, const string& pass);
     ~Student()=default;
 
-
-    //
-    //
-    //
-    ///
-    //  
     User* clone() const override;
     void writeToBinaryFile(std:: ofstream&ofs)const override;
     void loadFromBinaryFile(std::ifstream& ifs) override;
-    UserType getType() const override;
 
 };

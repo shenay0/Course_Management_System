@@ -19,7 +19,8 @@ class Course{
     void addUser(const string& pass, User*); // student adds himself/herself
 
     bool checkPassword(const string& pass) const;
-
+    void setPassword(const string&);
+    
     const vector<User*>& getUsers() const;
     const vector<Assignment>& getAssignments() const;
     const string& getCourseName() const;

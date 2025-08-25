@@ -1,7 +1,7 @@
 #include "LogOut.h"
 
 void Logout:: execute() const{
-    if(!userContainer->getLoggedUser()){
+    if(userContainer->getLoggedUserId() == CONSTANTS::INVALID_USER_ID){
         throw std::logic_error("Already logged out.\n");
     }
 

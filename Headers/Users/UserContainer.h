@@ -28,6 +28,7 @@ class UserContainer{
 
     User* findUser(int id);
     User* getLoggedUser();
+    int getLoggedUserId() const;
     void sendMessageToAll(const string& content);
 
     void writeToBinaryFile(std::ofstream& ofs)const;

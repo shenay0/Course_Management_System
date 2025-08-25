@@ -16,7 +16,7 @@ class Course{
 
     void addUser(User*); // teacher adds
     void addAssignment(const Assignment& assignment);
-    void addUser(const string& pass, User*); // student adds himself/herself
+    void enroll(const string& pass, User*); // student adds himself/herself
 
     bool checkPassword(const string& pass) const;
     void setPassword(const string&);
@@ -25,7 +25,9 @@ class Course{
     const vector<Assignment>& getAssignments() const;
     const string& getCourseName() const;
     const string& getPassword() const;
-
+    const User* getUserById(int id);
+    int teacherID() const;
+    
     void writeToBinaryFile(std::ofstream& ofs) const;
     void loadFromBinaryFile(std::ifstream& ifs);
 

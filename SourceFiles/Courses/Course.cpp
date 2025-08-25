@@ -8,7 +8,7 @@ void Course:: addUser(User*user){
     users.push_back(user);
 }
 
-void Course:: addUser(const string& pass, User* user){
+void Course:: enroll(const string& pass, User* user){
     if(!checkPassword(pass)){
         throw std::invalid_argument("Invalid password for course.\n");
     }
@@ -30,6 +30,20 @@ const vector<User*>& Course:: getUsers() const{
 
 const vector<Assignment>& Course:: getAssignments() const{
     return assignments;
+}
+
+const User* Course::getUserById(int id){
+    for(int i = 0; i < users.size();i++){
+        if(users[i]->getId() == id){
+            return users[i];
+        }
+    }
+    throw std::logic_error("There is no user in the course with the same id.\n");
+}
+
+
+int Course:: teacherID() const{
+    return users[0]->getId();
 }
 
 const string& Course:: getCourseName() const{

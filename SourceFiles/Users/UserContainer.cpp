@@ -23,6 +23,7 @@ void UserContainer:: logInUser(int id, const string& pass){
 
 	loggedUserId = id;
 	cout << "Login successful!\n";
+    cout << user->getName() << " | " << toString(user->getType()) << " | " << user->getId() << std:: endl;
 }
 
 void UserContainer:: logOutUser(){
@@ -49,6 +50,10 @@ void UserContainer:: removeUser(int id){
     
 }
 
+int UserContainer:: getLoggedUserId() const{
+    return loggedUserId;
+}
+
 User* UserContainer:: findUser(int id){
     for(int i = 0; i < users.getSize();i++){
         if(users[i]->getId()==id){
@@ -60,9 +65,6 @@ User* UserContainer:: findUser(int id){
 }
 
 void UserContainer::sendMessageToAll(const string& content){
-    if(loggedUserId != CONSTANTS::ADMIN_INDEX){
-        throw std::logic_error("Only admin can send message to all.\n");
-    }
     User* admin = findUser(CONSTANTS::ADMIN_INDEX);
     for(int i = 1; i < users.getSize();i++){
         Message msg(content, admin->getName(),users[i]->getId());
@@ -70,7 +72,10 @@ void UserContainer::sendMessageToAll(const string& content){
     }
 }
 User* UserContainer:: getLoggedUser(){
-    if(loggedUserId == -1) return nullptr;
+    if(loggedUserId == -1){
+        throw std::logic_error("Login first.\n");
+    }
+
     
     User* user = findUser(loggedUserId);
     return user;

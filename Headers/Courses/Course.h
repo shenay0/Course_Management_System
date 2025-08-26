@@ -29,7 +29,10 @@ class Course{
     const User* getUserById(int id) const;
     User* getUserByIndex(int idx);
     Assignment& getAssignment(const string& studentName);
+    Assignment* getAssignment(int id,const string& assignmentName);
     int teacherID() const;
+
+    void printSubmittedAssignments(const string& name) const;
 
     void writeToBinaryFile(std::ofstream& ofs) const;
     void loadFromBinaryFile(std::ifstream& ifs);

@@ -5,6 +5,7 @@
 using namespace std;
 
 class Assignment{
+    int studentId;
     string studentName;
     string courseName;
     size_t grade = 0;
@@ -17,7 +18,7 @@ class Assignment{
     public:
 
     Assignment() = default;
-    Assignment(const string&studentName,const string& courseName, const string& name);
+    Assignment(int studentId,const string&studentName,const string& courseName, const string& name);
     
     void submit(const string&);
     void addComment(const string&);
@@ -29,6 +30,9 @@ class Assignment{
     size_t getGrade() const;
     const string& getComment() const;
     const string& getSubmission() const;
+    int getStudentId() const;
+    bool isSubmitted() const;
+    void printAssignment() const;
 
     void writeToBinaryFile(std::ofstream& ofs) const;
     void loadFromBinaryFile(std:: ifstream& ifs);

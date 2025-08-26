@@ -13,6 +13,10 @@ void Inbox:: printInbox() const{
         messages[i].printMessage();
         cout << endl;
     }
+
+    if(messages.size() == 0){
+        std::cout << "No messages to show!" << std::endl;
+    }
 }
 
 void Inbox:: writeToBinaryFile(std::ofstream&ofs) const{

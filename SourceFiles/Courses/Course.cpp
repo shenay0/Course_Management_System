@@ -57,6 +57,21 @@ bool Course:: studentExists(int id) const{
     return false;
 }
 
+void Course::printSubmittedAssignments(const string& name) const{
+    int counter = 0;
+    for(int i = 0; i < assignments.size();i++){
+        if(assignments[i].isSubmitted() && assignments[i].getAssignmentName() == name){
+            counter++;
+            assignments[i].printAssignment();
+        }
+    }
+
+    if(counter == 0){
+        std:: cout << "No submitted assignments." << std::endl;
+    }
+
+}
+
 Assignment& Course:: getAssignment(const string& studentName){
     for(int i = 0; i < assignments.size();i++){
         if(assignments[i].getStudentName() == studentName)
@@ -69,6 +84,14 @@ const string& Course:: getCourseName() const{
 
 const string& Course:: getPassword() const{
     return password;
+}
+
+Assignment* Course:: getAssignment(int id, const string& assignmentName){
+    for(int i = 0; i < assignments.size();i++){
+        if(assignments[i].getStudentId() == id)
+            return &assignments[i];
+    }
+    return nullptr;
 }
 
 void Course:: setPassword(const string& pass){

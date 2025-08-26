@@ -1,10 +1,14 @@
 #include "Assignment.h"
 #include "FileUtills.h"
-Assignment:: Assignment(const string& studentName, const string& courseName, const string& assignmentName):studentName(studentName), courseName(courseName), name(assignmentName){
+Assignment:: Assignment(int studentId,const string& studentName, const string& courseName, const string& assignmentName):studentId(studentId), studentName(studentName), courseName(courseName), name(assignmentName){
 
 }
 
 void Assignment:: submit(const string& answer){
+    if(submitted){
+        throw std::logic_error("Assignment already submitted.\n");
+    }
+
     submission = answer;
     submitted = true;
 }
@@ -28,6 +32,13 @@ const string& Assignment:: getStudentName() const{
     return studentName;
 }
 
+bool Assignment:: isSubmitted()const{
+    return submitted;
+}
+
+void Assignment::printAssignment() const{
+    std:: cout << studentName << ", "  << studentId << ": " << submission << std::endl;
+}
 const string& Assignment::getAssignmentName() const{
     return name;
 }
@@ -42,6 +53,10 @@ const string& Assignment:: getSubmission() const{
 
 size_t Assignment:: getGrade() const{
     return grade;
+}
+
+int Assignment::getStudentId() const{
+    return studentId;
 }
 
 void Assignment:: writeToBinaryFile(std::ofstream& ofs) const{

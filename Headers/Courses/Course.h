@@ -14,9 +14,9 @@ class Course{
     Course() = default;
     Course(const string& name, const string& password);
 
-    void addUser(User*); // teacher adds
+    void addUser(User*);
     void addAssignment(const Assignment& assignment);
-    void enroll(const string& pass, User*); // student adds himself/herself
+    void enroll(const string& password, User*); 
 
     bool checkPassword(const string& pass) const;
     void setPassword(const string&);
@@ -27,7 +27,7 @@ class Course{
     const string& getPassword() const;
     const User* getUserById(int id);
     int teacherID() const;
-    
+
     void writeToBinaryFile(std::ofstream& ofs) const;
     void loadFromBinaryFile(std::ifstream& ifs);
 

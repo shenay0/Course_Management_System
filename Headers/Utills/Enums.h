@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
-enum UserType{
+enum class UserType{
     STUDENT,
     TEACHER,
     ADMIN

@@ -1,7 +1,7 @@
 #include "FileUtills.h"
 #include "Constants.h"
 
-namespace file_utills{
+namespace file_utills {
 void saveStringToBinaryFile(std::ofstream& ofs, const string& text){
     int len = text.size();
     ofs.write((const char*)&len,sizeof(len));

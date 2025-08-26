@@ -9,9 +9,9 @@ void AddStudentToCourse::execute() const{
     std:: cout << "Course name: ";
     std::string name;
     std::getline(cin,name);
-    Course* c = courseRepository->findCourse(name);
+    Course* course = courseRepository->findCourse(name);
 
-    if(c->teacherID() != user->getId()){
+    if(course->teacherID() != user->getId()){
         throw std:: invalid_argument("This teacher is not in the course.\n");
     }
 
@@ -19,5 +19,5 @@ void AddStudentToCourse::execute() const{
     std:: cin >> studentId;
 
     User* student = userContainer->findUser(studentId);
-    c->addUser(student);
+    course->addUser(student);
 }

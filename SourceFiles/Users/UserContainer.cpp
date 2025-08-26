@@ -50,6 +50,12 @@ void UserContainer:: removeUser(int id){
     
 }
 
+void UserContainer:: sendMessage(int id, const string& content){
+    User* user = findUser(id);
+    Message msg(content, getLoggedUser()->getName(), id);
+    user->addMessageToInbox(msg);
+}
+
 int UserContainer:: getLoggedUserId() const{
     return loggedUserId;
 }

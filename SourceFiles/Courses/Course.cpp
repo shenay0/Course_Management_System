@@ -55,6 +55,10 @@ const string& Course:: getPassword() const{
 }
 
 void Course:: setPassword(const string& pass){
+    if(pass.empty()){
+        throw std:: logic_error("Password cannot be empty.\n");
+    }
+    
     password = pass;
 }
 

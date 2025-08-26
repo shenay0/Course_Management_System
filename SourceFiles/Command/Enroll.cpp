@@ -13,12 +13,12 @@ void Enroll::execute() const{
     std:: cout << "Password: ";
     std:: cin >> pass;
 
-    Course* c = courseRepository->findCourse(name);
-    if(!c->checkPassword(pass)){
+    Course* course = courseRepository->findCourse(name);
+    if(!course->checkPassword(pass)){
         throw std:: logic_error("Wrong password.\n");
     }
 
-    c->enroll(pass,user);
+    course->enroll(pass,user);
 
-    std:: cout << "You enrolled to " << c->getCourseName() << std::endl;
+    std:: cout << "You enrolled to " << course->getCourseName() << std::endl;
 }

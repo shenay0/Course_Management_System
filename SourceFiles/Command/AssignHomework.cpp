@@ -14,7 +14,7 @@ void AssignHomework::execute() const{
 
     Course* course = courseRepository->findCourse(courseName);
     for(int i = 1; i < course->getUsers().size(); i++){//the teacher is at idx 0
-        Assignment assignment(course->getUserByIndex(i)->getName(), courseName, assignmentName);
+        Assignment assignment(course->getUserByIndex(i)->getId(),course->getUserByIndex(i)->getName(), courseName, assignmentName);
         course->addAssignment(assignment);
     }
 

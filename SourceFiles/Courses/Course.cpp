@@ -32,7 +32,7 @@ const vector<Assignment>& Course:: getAssignments() const{
     return assignments;
 }
 
-const User* Course::getUserById(int id){
+const User* Course::getUserById(int id) const{
     for(int i = 0; i < users.size();i++){
         if(users[i]->getId() == id){
             return users[i];
@@ -41,11 +41,28 @@ const User* Course::getUserById(int id){
     throw std::logic_error("There is no user in the course with the same id.\n");
 }
 
+User* Course::getUserByIndex(int idx) {
+    return users[idx];
+}
 
 int Course:: teacherID() const{
     return users[0]->getId();
 }
 
+bool Course:: studentExists(int id) const{
+    for(int i = 0; i < users.size();i++){
+        if(id == users[i]->getId())     
+            return true;
+    }
+    return false;
+}
+
+Assignment& Course:: getAssignment(const string& studentName){
+    for(int i = 0; i < assignments.size();i++){
+        if(assignments[i].getStudentName() == studentName)
+            return assignments[i];
+    }
+}
 const string& Course:: getCourseName() const{
     return courseName;
 }

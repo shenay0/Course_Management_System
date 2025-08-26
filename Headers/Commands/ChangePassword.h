@@ -3,6 +3,7 @@
 
 
 class ChangePassword: public Command{
+    public:
     ChangePassword() = default;
     void execute() const override;
 };

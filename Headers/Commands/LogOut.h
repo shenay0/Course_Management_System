@@ -2,8 +2,8 @@
 #include "Command.h"
 
 
-class Logout: public Command{
+class LogOut: public Command{
     public:
-    Logout() = default;
+    LogOut() = default;
     void execute() const override;
 };

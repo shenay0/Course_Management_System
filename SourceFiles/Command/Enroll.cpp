@@ -11,7 +11,7 @@ void Enroll::execute() const{
     std:: cout << "Name: ";
     std:: getline(std::cin >> std:: ws, name);
     std:: cout << "Password: ";
-    std:: cin >> pass;
+    std::getline(std::cin >> std::ws, pass);
 
     Course* course = courseRepository->findCourse(name);
     if(!course->checkPassword(pass)){

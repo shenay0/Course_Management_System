@@ -2,7 +2,7 @@
 #include "Assignment.h"
 #include "Student.h"
 #include "Teacher.h"
-
+#include "UserContainer.h"
 
 class Course{
     vector<User*> users;
@@ -35,6 +35,6 @@ class Course{
     void printSubmittedAssignments(const string& name) const;
 
     void writeToBinaryFile(std::ofstream& ofs) const;
-    void loadFromBinaryFile(std::ifstream& ifs);
+    void loadFromBinaryFile(std::ifstream& ifs, UserContainer* userContainer);
 
 };

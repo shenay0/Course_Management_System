@@ -31,7 +31,8 @@ void Inbox:: writeToBinaryFile(std::ofstream&ofs) const{
 void Inbox:: loadFromBinaryFile(std:: ifstream& ifs){
     int len =  0;
     ifs.read((char*)&len,sizeof(len));
-
+    
+    messages.clear();
     for(int i = 0; i < len;i++){
         Message msg;
         msg.loadFromBinaryFile(ifs);

@@ -33,8 +33,11 @@ void CourseRepository:: addCourse(const Course& course){
 }
 
 Course& CourseRepository::addCourse(const std::string& name, const std::string& pass) {
-    courses.emplace_back(name, pass);
-    return courses.back();
+    Course tempCourse(name, pass);
+
+    courses.push_back(tempCourse);
+
+    return courses[courses.size() - 1];
 }
 
 void CourseRepository:: writeToBinaryFile(std::ofstream& ofs) const{
@@ -46,13 +49,15 @@ void CourseRepository:: writeToBinaryFile(std::ofstream& ofs) const{
     }
 }
 
-void CourseRepository:: loadFromBinaryFile(std::ifstream& ifs){
+void CourseRepository:: loadFromBinaryFile(std::ifstream& ifs, UserContainer* userContainer){
     int len = 0;
     ifs.read((char*)&len,sizeof(len));
 
+    courses.clear();
+
     for(int i = 0; i < len;i++){
         Course course;
-        course.loadFromBinaryFile(ifs);
+        course.loadFromBinaryFile(ifs,userContainer);
         courses.push_back(course);
     }
 }

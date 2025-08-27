@@ -16,6 +16,7 @@ void AddStudentToCourse::execute() const{
     }
 
     int studentId;
+    std::cout << "Student id: ";
     std:: cin >> studentId;
 
     User* student = userContainer->findUser(studentId);

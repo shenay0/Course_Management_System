@@ -25,8 +25,9 @@ void GradeAssignment::execute() const{
     }
 
     int grade;
-    std::cin >> grade;
-    std::getline(cin,comment);
+    std:: cout << "Grade: ";
+    std::cin >> std::ws >>  grade;
+    std::getline(std::cin >> std::ws,comment);
 
     assignment->addComment(comment);
     assignment->setGrade(grade);

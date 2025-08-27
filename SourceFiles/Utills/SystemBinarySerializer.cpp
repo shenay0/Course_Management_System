@@ -32,7 +32,7 @@ void SystemBinarySerializer::loadFromBinaryFile(){
     }
 
     userContainer->loadFromBinaryFile(ifs);
-    courseRepository->loadFromBinaryFile(ifs);
+    courseRepository->loadFromBinaryFile(ifs, userContainer);
 }
 
 size_t getFileSize(std::ifstream& ifs){

@@ -18,7 +18,7 @@ void Assignment:: addComment(const string& str){
 }
 
 void Assignment:: setGrade(size_t gr) {
-    if(grade < 2 || grade > 6) 
+    if(gr < 2 || gr > 6) 
         throw std:: invalid_argument("Grade should be between 2 and 6.\n");
 
     grade = gr;
@@ -90,6 +90,6 @@ void Assignment:: loadFromBinaryFile(std:: ifstream& ifs){
 
     ifs.read((char*)&grade,sizeof(grade));
 
-    ifs.read((char*)submitted, sizeof(bool));
+    ifs.read((char*)&submitted, sizeof(bool));
 }
 

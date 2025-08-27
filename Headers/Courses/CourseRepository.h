@@ -20,7 +20,7 @@ class CourseRepository{
     Course& addCourse(const string& name, const string& pass);
 
     void writeToBinaryFile(std::ofstream& ofs) const;
-    void loadFromBinaryFile(std::ifstream& ifs);
+    void loadFromBinaryFile(std::ifstream& ifs, UserContainer* userContainer);
 
     
 

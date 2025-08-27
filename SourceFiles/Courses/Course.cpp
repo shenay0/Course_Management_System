@@ -1,12 +1,15 @@
 #include "Course.h"
 #include "UserFactory.h"
 
-Course::Course(const string& name, const string& pass):courseName(name), password(password){
+Course::Course(const string& name, const string& pass):courseName(name), password(pass){
 
 }
 void Course:: addUser(User* user){
     if(!user){
         throw std::logic_error("Nullptr.\n");
+    }
+    if(studentExists(user->getId())){
+        throw std::logic_error("This student already exists.\n");
     }
     users.push_back(user);
 }
@@ -108,11 +111,10 @@ void Course:: setPassword(const string& pass){
 
 void Course:: writeToBinaryFile(std::ofstream& ofs) const{
     int len = users.size();
-    ofs.write((const char*)&len,sizeof(len));
+    ofs.write((char*)&len,sizeof(len));
     for(int i = 0; i < len; i++){
-        UserType t = users[i]->getType();
-        ofs.write((const char*)&t,sizeof(t));
-        users[i]->writeToBinaryFile(ofs);
+        int id = users[i]->getId(); // store ID only
+        ofs.write((char*)&id, sizeof(id));
     }
 
     len = assignments.size();
@@ -127,18 +129,23 @@ void Course:: writeToBinaryFile(std::ofstream& ofs) const{
 
 }
 
-void Course::loadFromBinaryFile(std::ifstream& ifs){
+void Course::loadFromBinaryFile(std::ifstream& ifs, UserContainer* userContainer){
     int len = 0;
     ifs.read((char*)&len,sizeof(len));
+
+    len = 0;
+    ifs.read((char*)&len, sizeof(len));
+    users.clear();
+
     for(int i = 0; i < len; i++){
-        UserType t;
-        ifs.read((char*)&t,sizeof(t));
-        User* user = UserFactory:: getUser(t);
-        user->loadFromBinaryFile(ifs);
-
+        int id;
+        ifs.read((char*)&id, sizeof(id));
+        User* user = userContainer->findUser(id);
         users.push_back(user);
-    }
+}
 
+
+    assignments.clear();
     len = 0;
     ifs.read((char*)&len,sizeof(len));
     for(int i = 0; i < len; i++){

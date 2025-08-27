@@ -10,7 +10,7 @@ void CreateCourse::execute() const{
     std:: cout << "Course name: ";
     std::getline(std::cin >> std:: ws, name);
     std:: cout << "Password: ";
-    std:: cin >> pass;
+    std::getline(std::cin >> std::ws, pass);
 
     Course& c = courseRepository->addCourse(name, pass);
     c.addUser(user);

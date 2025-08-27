@@ -4,7 +4,10 @@
 Course::Course(const string& name, const string& pass):courseName(name), password(password){
 
 }
-void Course:: addUser(User*user){
+void Course:: addUser(User* user){
+    if(!user){
+        throw std::logic_error("Nullptr.\n");
+    }
     users.push_back(user);
 }
 

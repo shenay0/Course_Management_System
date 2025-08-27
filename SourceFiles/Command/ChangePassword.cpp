@@ -7,7 +7,7 @@ void ChangePassword::execute() const{
     }
     std:: cout << "Current password: ";
     string text;
-    std::getline(cin,text);
+    std::getline(std::cin>>std::ws,text);
 
     if(!user->isPasswordCorrect(text)){
         throw std:: logic_error("Wrong password!\n");

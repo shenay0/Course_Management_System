@@ -4,7 +4,7 @@ void Submit::execute() const{
     User* user = userContainer->getLoggedUser();
     std::cout << "Course name: ";
     string courseName;
-    std::getline(cin,courseName);
+    std::getline(std::cin >> std:: ws,courseName);
 
     Course* course = courseRepository->findCourse(courseName);
     if(!course->studentExists(user->getId())){
@@ -12,7 +12,7 @@ void Submit::execute() const{
     }
 
     string submission;
-    std::getline(cin,submission);
+    std::getline(std::cin >> std:: ws,submission);
     
     course->getAssignment(user->getName()).submit(submission);
     

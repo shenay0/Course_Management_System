@@ -10,10 +10,10 @@ void GradeAssignment::execute() const{
     int id;
 
     std::cout << "Course name: ";
-    std::getline(cin,courseName);
+    std::getline(std::cin >> std:: ws,courseName);
 
     std::cout << "Assignment name: ";
-    std::getline(cin,assignmentName);
+    std::getline(std::cin >> std:: ws,assignmentName);
 
     std::cout << "Student id: ";
     std::cin >> id;

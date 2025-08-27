@@ -8,7 +8,7 @@ void AddStudentToCourse::execute() const{
 
     std:: cout << "Course name: ";
     std::string name;
-    std::getline(cin,name);
+    std::getline(std::cin>>std::ws,name);
     Course* course = courseRepository->findCourse(name);
 
     if(course->teacherID() != user->getId()){

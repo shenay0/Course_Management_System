@@ -32,6 +32,11 @@ void CourseRepository:: addCourse(const Course& course){
     courses.push_back(course);
 }
 
+Course& CourseRepository::addCourse(const std::string& name, const std::string& pass) {
+    courses.emplace_back(name, pass);
+    return courses.back();
+}
+
 void CourseRepository:: writeToBinaryFile(std::ofstream& ofs) const{
     int len = courses.size();
     ofs.write((const char*)&len,sizeof(len));

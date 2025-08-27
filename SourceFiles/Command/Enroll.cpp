@@ -9,7 +9,7 @@ void Enroll::execute() const{
     std:: string name, pass;
 
     std:: cout << "Name: ";
-    std:: getline(std::cin, name);
+    std:: getline(std::cin >> std:: ws, name);
     std:: cout << "Password: ";
     std:: cin >> pass;
 

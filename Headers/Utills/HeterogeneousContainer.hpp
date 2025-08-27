@@ -7,7 +7,7 @@
 template<class T>
 class HeterogeneousContainer{
     T** objects = nullptr;
-    size_t size, capacity = 0;
+    size_t size, capacity = 1;
 
     void resize(size_t newCap);
 

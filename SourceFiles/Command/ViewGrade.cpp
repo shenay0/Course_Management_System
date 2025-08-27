@@ -8,10 +8,10 @@ void ViewGrade:: execute() const{
 
     string courseName,assignmentName;
     std:: cout << "Course name: ";
-    std::getline(cin,courseName);
+    std::getline(std::cin >> std:: ws,courseName);
 
     std:: cout << "Assignment name: ";
-    std::getline(cin,assignmentName);
+    std::getline(std::cin >> std:: ws,assignmentName);
 
     Course* course = courseRepository->findCourse(courseName);
     Assignment* assignment = course->getAssignment(user->getId(),assignmentName);

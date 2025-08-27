@@ -8,7 +8,7 @@ void SendMessage::execute() const{
 
     User* receiver = userContainer->findUser(id);
     std::string content;
-    std::getline(cin,content);
+    std::getline(std::cin>>std::ws,content);
 
     Message message(content,sender->getName(), receiver->getId());
     receiver->addMessageToInbox(message);

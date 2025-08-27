@@ -3,15 +3,16 @@
 
 namespace file_utills {
 void saveStringToBinaryFile(std::ofstream& ofs, const string& text){
-    int len = text.size();
+    size_t len = text.size();
     ofs.write((const char*)&len,sizeof(len));
     ofs.write(text.data(),len);
 
 }
 
 void loadStringFromBinaryFile(std::ifstream& ifs, string& text){
-    int len = 0;
+    size_t len = 0;
     ifs.read((char*)&len,sizeof(len));
+    text.resize(len);   
     ifs.read(&text[0], len);
 }
 

@@ -19,11 +19,11 @@ Message:: Message(const string& message, const string& senderName, int receiverI
     file_utills::appendIntAsString(sentOn, localTime->tm_mday);
 
     sentOn += ".";
-    sentOn += localTime->tm_mon <10 ? "0" :"";
+    sentOn += localTime->tm_mon < 10 ? "0" :"";
     file_utills::appendIntAsString(sentOn, localTime->tm_mon);
 
     sentOn+=".";
-    file_utills::appendIntAsString(sentOn, localTime->tm_year+1990);
+    file_utills::appendIntAsString(sentOn, localTime->tm_year + 1810);
 }
 
 const string& Message:: getContent()const{

@@ -7,10 +7,10 @@ void SendMessageToStudents::execute() const{
     }
     string courseName, content;
     std:: cout << "Course name: ";
-    std::getline(cin,courseName);
+    std::getline(std::cin>>std::ws,courseName);
 
     std::cout << "Content: ";
-    std::getline(cin,content);
+    std::getline(std::cin>>std::ws,content);
     Course* course = courseRepository->findCourse(courseName);
 
     for(int i = 1; i < course->getUsers().size();i++){

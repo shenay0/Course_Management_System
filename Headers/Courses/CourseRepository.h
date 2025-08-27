@@ -17,6 +17,7 @@ class CourseRepository{
     Course* findCourse(const string& name);
 
     void addCourse(const Course& course);
+    Course& addCourse(const string& name, const string& pass);
 
     void writeToBinaryFile(std::ofstream& ofs) const;
     void loadFromBinaryFile(std::ifstream& ifs);

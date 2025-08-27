@@ -8,14 +8,19 @@ void CreateCourse::execute() const{
 
     std:: string name, pass;
     std:: cout << "Course name: ";
-    std::getline(std::cin, name);
+    std::getline(std::cin >> std:: ws, name);
     std:: cout << "Password: ";
     std:: cin >> pass;
 
-    Course c(name,pass);
-    courseRepository->addCourse(c);
-    
+    Course& c = courseRepository->addCourse(name, pass);
     c.addUser(user);
+
+    // Course c(name,pass);
+    // c.addUser(user);
+   
+    // courseRepository->addCourse(c);
+    
+    
 
     std:: cout << "Successfully created a course and added yourself as a teacher.\n";
 }

@@ -24,6 +24,7 @@ class Course{
     void setPassword(const string&);
     
     const vector<User*>& getUsers() const;
+    vector<User*>& getUsers();
     const vector<Assignment>& getAssignments() const;
     const string& getCourseName() const;
     const string& getPassword() const;

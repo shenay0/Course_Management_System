@@ -45,7 +45,17 @@ void CourseRepository:: writeToBinaryFile(std::ofstream& ofs) const{
     ofs.write((const char*)&len,sizeof(len));
 
     for(int i = 0; i < len;i++){
+        int len = courses[i].getUsers().size();
+        ofs.write((char*)&len,sizeof(len));
+
         courses[i].writeToBinaryFile(ofs);
+
+        for(int j = 0; j < len; j++){
+        int id = courses[i].getUsers()[j]->getId(); // store ID only
+        ofs.write((char*)&id, sizeof(id));
+        }
+
+        
     }
 }
 
@@ -56,8 +66,20 @@ void CourseRepository:: loadFromBinaryFile(std::ifstream& ifs, UserContainer* us
     courses.clear();
 
     for(int i = 0; i < len;i++){
+        int len = 0;
+        ifs.read((char*)&len,sizeof(len));
+
         Course course;
         course.loadFromBinaryFile(ifs,userContainer);
+        
+
+        for(int j = 0; j < len; j++){
+        int id;
+        ifs.read((char*)&id, sizeof(id));
+        User* user = userContainer->findUser(id);
+        course.getUsers().push_back(user);
+        }
+
         courses.push_back(course);
     }
 }

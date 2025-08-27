@@ -34,6 +34,10 @@ const vector<User*>& Course:: getUsers() const{
     return users;
 }
 
+vector<User*>& Course:: getUsers(){
+    return users;
+}
+
 const vector<Assignment>& Course:: getAssignments() const{
     return assignments;
 }
@@ -110,14 +114,14 @@ void Course:: setPassword(const string& pass){
 }
 
 void Course:: writeToBinaryFile(std::ofstream& ofs) const{
-    int len = users.size();
-    ofs.write((char*)&len,sizeof(len));
-    for(int i = 0; i < len; i++){
-        int id = users[i]->getId(); // store ID only
-        ofs.write((char*)&id, sizeof(id));
-    }
+    // int len = users.size();
+    // ofs.write((char*)&len,sizeof(len));
+    // for(int i = 0; i < len; i++){
+    //     int id = users[i]->getId(); // store ID only
+    //     ofs.write((char*)&id, sizeof(id));
+    // }
 
-    len = assignments.size();
+    int len = assignments.size();
     ofs.write((const char*)&len,sizeof(len));
     for(int i = 0; i < len;i++){
         assignments[i].writeToBinaryFile(ofs);
@@ -130,21 +134,21 @@ void Course:: writeToBinaryFile(std::ofstream& ofs) const{
 }
 
 void Course::loadFromBinaryFile(std::ifstream& ifs, UserContainer* userContainer){
-    int len = 0;
-    ifs.read((char*)&len,sizeof(len));
+//     int len = 0;
+//     ifs.read((char*)&len,sizeof(len));
 
-    users.clear();
+//     users.clear();
 
-    for(int i = 0; i < len; i++){
-        int id;
-        ifs.read((char*)&id, sizeof(id));
-        User* user = userContainer->findUser(id);
-        users.push_back(user);
-}
+//     for(int i = 0; i < len; i++){
+//         int id;
+//         ifs.read((char*)&id, sizeof(id));
+//         User* user = userContainer->findUser(id);
+//         users.push_back(user);
+// }
 
 
     assignments.clear();
-    len = 0;
+    int len = 0;
     ifs.read((char*)&len,sizeof(len));
     for(int i = 0; i < len; i++){
         Assignment a;

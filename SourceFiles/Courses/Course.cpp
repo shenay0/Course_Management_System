@@ -133,8 +133,6 @@ void Course::loadFromBinaryFile(std::ifstream& ifs, UserContainer* userContainer
     int len = 0;
     ifs.read((char*)&len,sizeof(len));
 
-    len = 0;
-    ifs.read((char*)&len, sizeof(len));
     users.clear();
 
     for(int i = 0; i < len; i++){
@@ -159,6 +157,10 @@ void Course::loadFromBinaryFile(std::ifstream& ifs, UserContainer* userContainer
     file_utills::loadStringFromBinaryFile(ifs,password);
     
    
+}
+
+Course::~Course() {
+    users.clear();  // don’t delete, just drop pointers
 }
 
 

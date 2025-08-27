@@ -25,12 +25,14 @@ class User{
 
     const string& getName()const;
     const string& getPassword()const;
+    static int getIdCounter();
     int getId() const;
     bool isPasswordCorrect(const string& pass) const;
     UserType getType()const;
     void printInbox() const;
     void addMessageToInbox(const Message& msg);
     void clearInbox(); 
+    static void setIdCounter(int);
 
     void changePassword(const string& newPass);
     

@@ -130,10 +130,10 @@ void HeterogeneousContainer<T>:: resize(size_t newCap){
 }
 template <class T>
 void HeterogeneousContainer<T>::free(){
-    for(int i = 0; i < capacity; i++){
+    for(int i = 0; i < size; i++){
         delete objects[i];
     }
-    delete[] objects;
+    //delete[] objects;
 }
 
 template <class T>

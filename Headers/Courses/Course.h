@@ -13,6 +13,7 @@ class Course{
     public:
     Course() = default;
     Course(const string& name, const string& password);
+    ~Course();
 
     void addUser(User*);
     void addAssignment(const Assignment& assignment);

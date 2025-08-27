@@ -104,17 +104,17 @@ void UserContainer:: writeToBinaryFile(std::ofstream& ofs) const{
 
     int len = users.getSize();
     ofs.write((const char*)&len,sizeof(len));
-    for(int i =0;i < len;i++){
+    for(int i = 0;i < len;i++){
         UserType t = users[i]->getType();
         ofs.write((const char*)&t,sizeof(t));
         users[i]->writeToBinaryFile(ofs);
     }
+    int idCounter = User::getIdCounter();
+    ofs.write((const char*)&idCounter,sizeof(idCounter));
 }
 
 void UserContainer::loadFromBinaryFile(std::ifstream&ifs){
     ifs.read((char*)&loggedUserId,sizeof(loggedUserId));
-
-    users.clear();
 
     int len = 0;
     ifs.read((char*)&len,sizeof(len));
@@ -128,5 +128,9 @@ void UserContainer::loadFromBinaryFile(std::ifstream&ifs){
         user->loadFromBinaryFile(ifs);
         users.addObject(user);
     }
+
+    int idCounter = 0;
+    ifs.read((char*)&idCounter,sizeof(idCounter));
+    User::setIdCounter(idCounter);
 
 }

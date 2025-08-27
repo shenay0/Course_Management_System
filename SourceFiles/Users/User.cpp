@@ -2,9 +2,12 @@
 int User:: idCounter = 100;
 
 User:: User(const string& name, const string& password): name(name), password(password){
-    
+
 }
 
+int User::getIdCounter(){
+    return idCounter;
+}
 const string& User:: getName() const{
     return name;
 }
@@ -15,6 +18,10 @@ const string& User:: getPassword() const{
 
 int User:: getId() const{
     return id;
+}
+
+void User::setIdCounter(int counter){
+    idCounter = counter;
 }
 
 UserType User:: getType() const{

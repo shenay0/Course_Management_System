@@ -12,7 +12,7 @@ void Engine:: run(){
 
     UserContainer* userContainer = UserContainer::getInstance();
     if(!userContainer->find(0)){
-        Admin* admin;
+        Admin* admin = new Admin();
         userContainer->createUser(admin);
     }
 
@@ -39,7 +39,7 @@ void Engine:: run(){
 			std::cin.clear();
 		}
 	}
-    
+
     try{
     SystemBinarySerializer::saveToBinaryFile();
     }

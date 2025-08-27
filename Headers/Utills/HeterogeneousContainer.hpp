@@ -25,7 +25,7 @@ class HeterogeneousContainer{
 
     ~HeterogeneousContainer();
 
-    void addObject(const T* obj);
+    void addObject( T* obj);
     void addObject(const T& obj);
 
     void remove(size_t idx);
@@ -117,7 +117,7 @@ void HeterogeneousContainer<T>:: moveFrom(HeterogeneousContainer&& other) noexce
 
 template <class T>
 void HeterogeneousContainer<T>:: resize(size_t newCap){
-    <T>** temp = new T*[newCap]{};
+    T** temp = new T*[newCap]{};
     for(int i = 0; i < capacity; i++){
         temp[i] = objects[i];
     }
@@ -146,12 +146,15 @@ void HeterogeneousContainer<T>:: addObject(const T& obj){
 }
 
 template<class T>
-void HeterogeneousContainer<T>:: addObject(const T* obj){
+void HeterogeneousContainer<T>:: addObject(T* obj){
+    if(!obj){
+        throw std::logic_error("Nullptr.\n");
+    }
     if(size>= capacity){
         resize(capacity*2);
     }
 
-    objects[size++]= obj;
+    objects[size++] = obj;
 }
 template<class T>
 void HeterogeneousContainer<T>:: remove(size_t idx){

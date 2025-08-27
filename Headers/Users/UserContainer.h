@@ -1,3 +1,4 @@
+#pragma once
 #include "Admin.h"
 #include "Teacher.h"
 #include "Student.h"
@@ -23,10 +24,11 @@ class UserContainer{
     void logInUser(int id, const string& pass);
     void logOutUser();
 
-    void createUser(const User* user);
+    void createUser( User* user);
     void removeUser(int id);
 
-    User* findUser(int id);
+    User* findUser(int id); // throws an exception if it doesnt exist
+    User* find(int id); // returns nullptr if doesnt exist
     User* getLoggedUser();
     int getLoggedUserId() const;
     void sendMessageToAll(const string& content);

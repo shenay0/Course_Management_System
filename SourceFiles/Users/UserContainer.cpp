@@ -1,6 +1,8 @@
 #include "UserContainer.h"
 #include "Constants.h"
 #include "UserFactory.h"
+
+UserContainer* UserContainer:: instance = nullptr;
 UserContainer* UserContainer:: getInstance(){
     if(!instance){
         instance = new UserContainer();
@@ -30,7 +32,7 @@ void UserContainer:: logOutUser(){
     loggedUserId = -1;
 }
 
-void UserContainer:: createUser(const User* user){
+void UserContainer:: createUser(User* user){
     if(!user){
         throw std:: invalid_argument("Invalid user.\n");
     }
@@ -68,6 +70,16 @@ User* UserContainer:: findUser(int id){
     }
 
     throw std::invalid_argument("Invalid id.\n");
+}
+
+User* UserContainer::find(int id){
+    for(int i = 0; i < users.getSize();i++){
+        if(users[i]->getId()==id){
+            return users[i];
+        }
+    }
+
+    return nullptr;
 }
 
 void UserContainer::sendMessageToAll(const string& content){

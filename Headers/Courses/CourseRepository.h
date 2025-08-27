@@ -1,3 +1,4 @@
+#pragma once
 #include "Course.h"
 
 class CourseRepository{

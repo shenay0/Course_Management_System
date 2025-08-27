@@ -77,6 +77,7 @@ Assignment& Course:: getAssignment(const string& studentName){
         if(assignments[i].getStudentName() == studentName)
             return assignments[i];
     }
+    throw std::runtime_error("Assignment not found.\n");
 }
 const string& Course:: getCourseName() const{
     return courseName;

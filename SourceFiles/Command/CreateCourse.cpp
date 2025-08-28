@@ -15,12 +15,5 @@ void CreateCourse::execute() const{
     Course& c = courseRepository->addCourse(name, pass);
     c.addUser(user);
 
-    // Course c(name,pass);
-    // c.addUser(user);
-   
-    // courseRepository->addCourse(c);
-    
-    
-
     std:: cout << "Successfully created a course and added yourself as a teacher.\n";
 }

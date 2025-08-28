@@ -23,7 +23,7 @@ Message:: Message(const string& message, const string& senderName, int receiverI
     file_utills::appendIntAsString(sentOn, localTime->tm_mon);
 
     sentOn+=".";
-    file_utills::appendIntAsString(sentOn, localTime->tm_year + 1810);
+    file_utills::appendIntAsString(sentOn, localTime->tm_year + 1900);
 }
 
 const string& Message:: getContent()const{

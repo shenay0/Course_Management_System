@@ -119,8 +119,6 @@ void UserContainer::loadFromBinaryFile(std::ifstream&ifs){
     int len = 0;
     ifs.read((char*)&len,sizeof(len));
     
-    //users.clear();//deletes the objects in the container and the container itself
-
     for(int i = 0; i < len; i++ ){
         UserType t;
         ifs.read((char*)&t,sizeof(t));
